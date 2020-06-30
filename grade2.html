@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grade Calculator</title>
+	<!-- cdn link for bootstrap for -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
+</head>
+<body>
+   <div class="container">
+   	<table class="table table-center">
+   		<thead>
+   			<tr class="table-success">
+   				<td class="text-center bg-dark text-white">Student Grade Calcy</td>
+   			</tr>
+   		</thead>
+   	</table>  	
+   </div>
+   <div class="container">
+   <form action="#">
+        <div class="form-group ">
+            <label for="sub1">Maths:</label>
+            <input type="text" class="form-control myinput"  min="0 " max="100"  onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g,'');" id="maths" name="username" required value="">
+        </div>
+        <div class="form-group">
+            <label for="sub2">Java:</label>
+            <input type="text" class="form-control myinput " min="0" max="100"  onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g,'');" id="java" name="password" required value="">
+        </div>
+        <div class="form-group">
+            <label for="sub3">Computer:</label>
+            <input type="text" class="form-control myinput " min="0" max="100"  onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g,'');" id="computer" name="password" required value="">
+        </div>
+        <div class="form-group">
+            <label for="sub4">English:</label>
+            <input type="text" class="form-control myinput" min="0" max="100"  onkeyup="javascript: this.value = this.value.replace(/[^0-9]/g,'');" id="english" name="password" required value="">
+        </div>
+        
+    <input type="button"  class="btn btn-primary" id="result" value="Submit" onclick="myfun()">
+  </form>
+   </div>
+
+
+   <div class="container float-sm-right">
+      <div class="row col-mx-12 offset-md-2">
+          <div class=" bg-dark text-white" id="showData">
+            Your result will show here ..
+            <!--  <h3 class="text-white"> out of 400 your total is <span id="total"></span> and parcentage is <span id="prc"></span></h3> -->
+          </div>
+      </div>
+   </div>
+ 
+
+        <script type="text/javascript">
+     	const myfun = () =>{
+   		let val_maths = document.getElementById('maths').value;
+   		let val_java  = document.getElementById('java').value;
+   		let val_computer = document.getElementById('computer').value;
+   		let val_english = document.getElementById('english').value;
+   		let grade = "";
+
+   		let total_price = parseInt(val_maths)+parseInt(val_java)+parseInt(val_computer)+parseInt(val_english);
+       
+       // alert(total_price);
+
+        let parcentge = parseInt(total_price) * 100 /400;
+          // alert(parcentage);
+
+          if (parcentge <= 100 && parcentge >= 80){
+            grade ='A';
+          }else  if (parcentge <= 79 && parcentge >= 60){
+            grade = 'B';
+          }else  if (parcentge <= 59 && parcentage >= 40){
+            grade = 'c';
+          }else{
+            grade = 'F';
+          };
+
+         document.getElementById('showData').innerHTML = `Out of 400 your total is ${total_price} and Parcentage is ${parcentge} %.<br> Your grade is ${grade}`;
+        
+   		// console.log(maths);
+   	  } ;
+
+   </script>
+          <script type="text/javascript">
+    	
+    	  $(document).ready(function(){
+          $(".myinput").on('keypress keyup', function(){
+
+            var max = parseInt($(this).attr('max'));
+            var min = parseInt($(this).attr('min'));
+            var val = $(this).val();
+
+            (val < 0) ? $(this).val(min) : $(this).val();
+            (val > 100) ? $(this).val(max) : $(this).val();
+
+              });
+         });
+
+
+        </script>
+</body>
+</html>
